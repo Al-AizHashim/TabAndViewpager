@@ -1,53 +1,80 @@
 package alaiz.hashim.tabandviewpager
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.LinearLayout
+import android.widget.TextView
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
+lateinit var textview1: TextView
+lateinit var mainlayoutfragment:FrameLayout
 
-/**
- * A simple [Fragment] subclass.
- * Use the [FirstFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-lateinit var mainFragment: FrameLayout
 class FirstFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
+
+
+    private var param1: Int? = null
     private var param2: String? = null
 
+    @SuppressLint("WrongViewCast")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
+            param1 = it.getInt(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
     }
 
+    @SuppressLint("ResourceType")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val v=inflater.inflate(R.layout.fragment_first, container, false  )
+        textview1= v.findViewById(R.id.textView1)
+        mainlayoutfragment=v.findViewById(R.id.mainFragment1)
+        when(param1){
+            0->{textview1.text="the First page"
+                mainlayoutfragment.setBackgroundColor(R.color.material_on_primary_disabled)
+            }
+            1->{textview1.text="the second page"
+            mainlayoutfragment.setBackgroundColor(R.color.design_default_color_primary_dark)
+        }
+            2->{textview1.text="the third page"
+                mainlayoutfragment.setBackgroundColor(R.color.colorPrimaryDark)
+            }
+            else ->{textview1.text="the third page"
+               mainlayoutfragment.setBackgroundColor(R.color.colorAccent)
+            }
+        }
+
+
+
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_first, container, false)
+        return v
     }
 
+    override fun onStart() {
+        super.onStart()
+
+    }
     companion object {
 
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+
+        fun newInstance(param1: Int, param2: String) =
             FirstFragment().apply {
                 arguments = Bundle().apply {
 
-                    putString(ARG_PARAM1, param1)
+                    putInt(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
                 }
             }

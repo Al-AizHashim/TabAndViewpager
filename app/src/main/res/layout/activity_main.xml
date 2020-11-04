@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:id="@+id/mainleanerlayout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,40 +10,15 @@
     tools:context=".MainActivity">
 <com.google.android.material.tabs.TabLayout
     android:id="@+id/tabs"
-    android:background="#9C27B0"
+    android:background="#6200EE"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-    <com.google.android.material.tabs.TabItem
-        android:id="@+id/tabNo1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="11tab 1"
-        android:icon="@mipmap/ic_launcher"
-        />
-
-    <com.google.android.material.tabs.TabItem
-        android:id="@+id/tabNo2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="tab 2"
-        android:icon="@mipmap/ic_launcher"
-        />
-
-    <com.google.android.material.tabs.TabItem
-        android:id="@+id/tabNo3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="tab_3"
-        android:icon="@mipmap/ic_launcher"
-        />
 </com.google.android.material.tabs.TabLayout>
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/pager"
+        android:orientation="vertical"
+        android:layoutDirection="rtl"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
-
-
-
-
 </LinearLayout>

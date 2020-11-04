@@ -1,7 +1,11 @@
 package alaiz.hashim.tabandviewpager
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.FrameLayout
+import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -12,6 +16,8 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 lateinit var tabLayout:TabLayout
 lateinit var tabViewPager:ViewPager2
+lateinit var mainLinearLayoutFragment: LinearLayout
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,8 +27,11 @@ class MainActivity : AppCompatActivity() {
         tabViewPager=findViewById(R.id.pager)
 
 
+
         tabViewPager.adapter=object :FragmentStateAdapter(this) {
+
             override fun createFragment(position: Int): Fragment {
+
                 tabLayout.getTabAt(0)!!.setIcon(R.drawable.ic_baseline_home_24)
                 tabLayout.getTabAt(1)!!.setIcon(R.drawable.ic_baseline_audiotrack_24)
                 tabLayout.getTabAt(2)!!.setIcon(R.drawable.ic_baseline_favorite_24)
@@ -43,17 +52,17 @@ class MainActivity : AppCompatActivity() {
 
                return when (position) {
                     0 -> {
-                        FirstFragment.newInstance("", "")
+                        FirstFragment.newInstance(position, "green")
 
                     }
                     1 -> {
-                        SecondFragment.newInstance("", "")
+                        FirstFragment.newInstance(position, "")
                     }
                     2 -> {
-                        ThirdFragment.newInstance("", "")
+                        FirstFragment.newInstance(position, "")
                     }
                     else -> {
-                        SecondFragment.newInstance("", "")
+                        FirstFragment.newInstance(position, "")
                     }
                 }
             }
@@ -62,11 +71,13 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
+
         TabLayoutMediator(tabLayout, tabViewPager){tab,position->
-            tab.text=when(position){
-                0 ->"tab1"
-                1 ->"tab2"
-                2 ->"tab3"
+            when(position){
+                0 -> {
+                    tab.text ="tab1"}
+                1 ->tab.text = "tab2"
+                2 ->tab.text = "tab3"
                 else -> null
             }
 
